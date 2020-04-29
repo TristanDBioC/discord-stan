@@ -164,4 +164,4 @@ async def unload(ctx, extension):
 
 
 ''' Create user database '''
-client.run("NjkwMDc2NTYyMTEyMjQ5ODU3.XnM2Zg.h_BNPPpxqRqc4Kg8HfeJlC4Wt5Q")
+client.run("NjkwMDc2NTYyMTEyMjQ5ODU3.Xqm08w.MxcI1TRCZYoVVD8spfsAyruGEnI")
