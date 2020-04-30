@@ -4,7 +4,7 @@ def welcome(ctx):
 	__**{}**__
 
 	**Welcome to the server**
-	This is a hangout server created by **{}**. 
+	This is a hangout server created by **{}**.
 	This server does not represent any organization or group.
 	There are several bots on the server that has different functions.
 	You may invite your friends.
@@ -40,5 +40,5 @@ def welcome(ctx):
 	*After reading the server rules,*
 	:point_down: *click this to proceed*
 
-	'''.format(ctx.message.guild,ctx.message.author.display_name)
+	'''.format(ctx.message.guild, ctx.message.author.display_name)
 	return message
