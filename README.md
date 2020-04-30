@@ -4,12 +4,21 @@ Source code for personal discord bot
 Version 1.00 | April 27, 2020
 
 Commands
-- Prefix = "."
+- Prefix = "." (default)
 - ping = sends out a simple ping
 - greet = creates wecelcome message based on embed.py and adds a reaction to it
-- kick = kicks a member
-- ban = bans a member
-- invite = shows the invite link
+- kick = kicks a member (kick_members)
+- ban = bans a member (ban_members)
+- invite = shows the invite link 
+- prefix = changes the command_prefix (is_owner)
+- addrole = adds role
+- rmrole = removes roles
+- promote/demote = changes someone's role but only to par with your level
+-- upload source files
+-- change avatar 
+-- change status
+-- display 
+
 
 Events
 - on_member_join = restricts member visibilty and actions; adds roles
@@ -21,3 +30,5 @@ Files
 - embed.py = a function library
 - server_id.json = contains discord IDs for roles, users, channels, etc. that is used by the bot
 
+Misc. Features
+--

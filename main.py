@@ -1,10 +1,10 @@
 import discord
 import json
 
-from embed import *
+from utils import *
 from discord.ext import commands
 
-client = commands.Bot(command_prefix=".")
+client = commands.Bot(command_prefix="`")
 client.remove_command('help')
 
 
@@ -26,13 +26,51 @@ def get_id(key1: str, key2: str):
 
 ''' ~~~~~~~ Under Development ~~~~~~~~ '''
 ''' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '''
+@client.command()
+@commands.has_permissions(is_owner)
+async def source(ctx):
+    await ctx.send(file=discord.File('main.py'))
+    await ctx.send(file=discord.File('utils.py'))
+    await ctx.send(file=discord.File('server_id.json'))
+    await ctx.send(file=discord.File('requirements.txt'))
+    await ctx.send(file=discord.File('readme.md'))
+
 
 @client.command()
 @commands.check(is_owner)
-async def greet(ctx):
-	msg = await ctx.send(welcome(ctx))
-	await msg.add_reaction("\U00002705")
-	await ctx.message.delete()
+async def prefix(ctx, arg: str):
+    client.command_prefix = arg
+    await ctx.message.add_reaction("\U00002705")
+    await ctx.send("Command prefix changed to {}".format(arg))
+
+
+@client.command()
+@commands.has_permissions(manage_roles=True)
+async def addrole(ctx, member: discord.Member, role: discord.Role):
+    await member.add_roles(role)
+    await ctx.message.add_reaction("\U00002705")
+    
+
+@client.command()
+@commands.has_permissions(manage_roles=True)
+async def rmrole(ctx, member: discord.Member, role: discord.Role):
+    await member.remove_roles(role)
+    await ctx.message.add_reaction("\U00002705")
+
+
+@client.command(aliases=['demote'])
+@commands.has_permissions(manage_roles=True)
+async def promote(ctx, member: discord.Member, role: discord.Role):
+    if ctx.author.top_role.position < member.top_role.position:
+        await ctx.send("You cannot dictate someone higher than you")
+        return
+    if ctx.author.top_role.position < role.position:
+        await ctx.send("You do not have authority to bestow this rank")
+        return
+    for x in member.roles:
+        if x.position > 0:
+            await member.remove_roles(x)
+    await member.add_roles(role)
 
 
 ''' ~~~~~~~~~~~~~ EVENTS ~~~~~~~~~~~~~~ '''
@@ -54,9 +92,6 @@ async def on_raw_reaction_add(payload):
 	
 	channel = client.get_channel(get_id("channels", "system"))
 	await channel.send("{} joined the {}. Welcome! :crossed_swords: :shield:".format(user.mention,guild.name))
-
-
-
 
 
 ''' When the bot script is running and read '''
@@ -140,6 +175,14 @@ async def ban(ctx, member: discord.Member, *, reason=None):
 ''' ~~~~~~~~~~~~~~ OWNER COMMANDS ~~~~~~~~~~~~~~ '''
 ''' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '''
 
+@client.command()
+@commands.check(is_owner)
+async def greet(ctx):
+	msg = await ctx.send(welcome(ctx))
+	await msg.add_reaction("\U00002705")
+	await ctx.message.delete()
+
+
 ''' shutdown '''
 @client.command()
 @commands.check(is_owner)
@@ -164,4 +207,4 @@ async def unload(ctx, extension):
 
 
 ''' Create user database '''
-client.run("NjkwMDc2NTYyMTEyMjQ5ODU3.XnM2Zg.h_BNPPpxqRqc4Kg8HfeJlC4Wt5Q")
+client.run("NjkwMDc2NTYyMTEyMjQ5ODU3.Xqm08w.MxcI1TRCZYoVVD8spfsAyruGEnI")
