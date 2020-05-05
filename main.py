@@ -1,17 +1,28 @@
 import discord
 import json
+import os
 
 from zipfile import ZipFile
 from utils import *
 from discord.ext import commands
 
-client = commands.Bot(command_prefix="`")
+client = commands.Bot(command_prefix=".")
 client.remove_command('help')
-client.version = "1.1.4"
+client.version = "1.1.5"
+client.inv = "https://discord.gg/gcaHu8G"
+client.welcome_msg: discord.Message
 
 
 ''' ~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~ '''
 ''' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '''
+
+
+async def acknowledge(ctx, emote, emote2=None):
+    emoji = discord.utils.get(ctx.guild.emojis, name=emote)
+    await ctx.message.add_reaction(emoji)
+    if emote2 is not None:
+        emoji = discord.utils.get(ctx.guild.emojis, name=emote2)
+        await ctx.message.add_reaction(emoji)
 
 
 def is_owner(ctx):
@@ -28,6 +39,10 @@ def get_id(key1: str, key2: str):
 ''' ~~~~~~~ Under Development ~~~~~~~~ '''
 ''' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '''
 
+# delete the existing STAN.ZIP
+# create channel command
+# currency system
+
 
 ''' ~~~~~~~~~~~~~ EVENTS ~~~~~~~~~~~~~~ '''
 ''' ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ '''
@@ -37,6 +52,10 @@ def get_id(key1: str, key2: str):
 async def on_ready():
     version = discord.Game("Version {}".format(client.version))
     await client.change_presence(activity=version)
+    try:
+    	os.remove('discord-stan.zip')
+    except FileNotFoundError:
+    	pass
     print("Stan is ready")
 
 
@@ -52,7 +71,6 @@ async def on_raw_reaction_add(payload):
         return
     await user.remove_roles(rolechk)
     await user.add_roles(guild.get_role(get_id("roles", "level_one")))
-
     channel = client.get_channel(get_id("channels", "system"))
     await channel.send("{} joined the {}. Welcome! :crossed_swords: :shield:".
                        format(user.mention, guild.name))
@@ -94,12 +112,15 @@ async def on_message(message):
 
 @client.command()
 async def invite(ctx):
-    await ctx.send("https://discord.gg/gcaHu8G")
+    await ctx.send(client.inv)
+    await acknowledge(ctx, 'stan_smile')
 
 
 @client.command()
 async def ping(ctx):
-    await ctx.send("{}ms :heart:".format(round(client.latency * 1000)))
+    emoji = discord.utils.get(ctx.guild.emojis, name='stan_happy')
+    await ctx.send("{}ms {}".format(round(client.latency * 1000), emoji))
+    await acknowledge(ctx, 'stan_smile')
 
 
 @client.command()
@@ -112,29 +133,21 @@ async def clear(ctx, amount: int = 999):
 @commands.has_permissions(kick_members=True)
 async def kick(ctx, member: discord.Member, *, reason=None):
     await member.kick(reason=reason)
+    await acknowledge(ctx, 'stan_oo')
 
 
 @client.command()
 @commands.has_permissions(ban_members=True)
 async def ban(ctx, member: discord.Member, *, reason=None):
     await member.ban(reason=reason)
-
-
-@client.command()
-@commands.check(is_owner)
-async def status(ctx, arg='reset'):
-    if arg == 'reset':
-        version = discord.Game("Version {}".format(client.version))
-    else:
-        version = discord.Game(arg)
-    await client.change_presence(activity=version)
+    await acknowledge(ctx, 'stan_oo')
 
 
 @client.command()
 @commands.has_permissions(manage_roles=True)
 async def addrole(ctx, member: discord.Member, role: discord.Role):
     await member.add_roles(role)
-    await ctx.message.add_reaction("\U00002705")
+    await acknowledge(ctx, 'stan_smile')
 
 
 @client.command()
@@ -142,11 +155,12 @@ async def addrole(ctx, member: discord.Member, role: discord.Role):
 async def rmrole(ctx, member: discord.Member, role: discord.Role):
     await member.remove_roles(role)
     await ctx.message.add_reaction("\U00002705")
+    await acknowledge(ctx, 'stan_smile')
 
 
-@client.command(aliases=['demote'])
+@client.command(aliases=['demote', 'promote'])
 @commands.has_permissions(manage_roles=True)
-async def promote(ctx, member: discord.Member, role: discord.Role):
+async def change_roles(ctx, member: discord.Member, role: discord.Role):
     if ctx.author.top_role.position < member.top_role.position:
         await ctx.send("You cannot dictate someone higher than you")
         return
@@ -157,6 +171,7 @@ async def promote(ctx, member: discord.Member, role: discord.Role):
         if x.position > 0:
             await member.remove_roles(x)
     await member.add_roles(role)
+    await acknowledge(ctx, 'stan_neutral')
 
 
 ''' ~~~~~~~~~~~~~~ OWNER COMMANDS ~~~~~~~~~~~~~~ '''
@@ -165,41 +180,40 @@ async def promote(ctx, member: discord.Member, role: discord.Role):
 
 @client.command()
 @commands.check(is_owner)
+async def status(ctx, *, arg='reset'):
+    if arg == 'reset':
+        version = discord.Game("Version {}".format(client.version))
+    else:
+        version = discord.Game(arg)
+    await client.change_presence(activity=version)
+    await acknowledge(ctx, 'empire', 'stan_smile')
+
+
+@client.command()
+@commands.check(is_owner)
 async def greet(ctx):
-    msg = await ctx.send(welcome(ctx))
-    await msg.add_reaction("\U00002705")
+    client.welcome_msg = await ctx.send(welcome(ctx))
+    await client.welcome_msg.add_reaction(discord.utils.get(ctx.guild.emojis, name='empire'))
     await ctx.message.delete()
 
 
 @client.command()
-@commands.check(is_owner)
-async def kill(ctx):
-    await ctx.send("Stan is logging off")
-    exit()
-
-
-@client.command()
-@commands.check(is_owner)
-async def load(ctx, extension):
-    client.load_extension("cogs.{}".format(extension))
-    await ctx.send("{} loaded".format(extension))
-
-
-@client.command()
-@commands.check(is_owner)
 async def source(ctx):
     try:
-        with ZipFile('stan.zip', 'x') as f:
+        with ZipFile('discord-stan.zip', 'x') as f:
             f.write('main.py')
             f.write('utils.py')
             f.write('server_id.json')
             f.write('requirements.txt')
-            f.write('readme.md')
+            f.write('README.md')
+            f.write('changelog.txt')
     except FileExistsError:
         pass
     finally:
-        msg = "Here is my source code. Handle it with care! :neutral_face:"
-        await ctx.send(file=discord.File('stan.zip'), content=msg)
+        emoji = discord.utils.get(ctx.guild.emojis, name='stan_blush')
+        msg = "Here is my source code. Please handle it with care {}".format(emoji)
+        await ctx.send(file=discord.File('discord-stan.zip'), content=msg)
+        await acknowledge(ctx, 'empire', 'stan_smile')
 
 
 @client.command()
@@ -207,12 +221,31 @@ async def source(ctx):
 async def prefix(ctx, arg: str):
     client.command_prefix = arg
     await ctx.send("Command prefix changed to {}".format(arg))
+    await acknowledge(ctx, 'empire', 'stan_smile')
 
 
 @client.command()
+@commands.check(is_owner)
 async def unload(ctx, extension):
     client.unload_extension("cogs.{}".format(extension))
     await ctx.send("{} loaded".format(extension))
+    await acknowledge(ctx, 'empire', 'stan_smile')
+
+
+@client.command()
+@commands.check(is_owner)
+async def load(ctx, extension):
+    client.load_extension("cogs.{}".format(extension))
+    await ctx.send("{} loaded".format(extension))
+    await acknowledge(ctx, 'empire', 'stan_smile')
+
+
+@client.command()
+@commands.check(is_owner)
+async def kill(ctx):
+    await ctx.send("Stan is logging off")
+    await acknowledge(ctx, 'empire', 'stan_smile')
+    exit()
 
 
 client.run("NjkwMDc2NTYyMTEyMjQ5ODU3.Xqm08w.MxcI1TRCZYoVVD8spfsAyruGEnI")
