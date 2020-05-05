@@ -25,7 +25,7 @@ def welcome(ctx):
 
 	__**Rules**__
 	1. **No spamming**
-	• Do not send repititive messages that will disrupt others' user experience
+	• Do not send repetitive messages that will disrupt others' user experience
 	• This includes, but not limited to: messages, files, commands.
 
 	2. **Restrict your bot commands to the appropriate text channel**

@@ -1,0 +1,10 @@
+v[1.1.5] 05-05-2020
+
+General changes
+- bot now uses local custom emojis
+- bot now adds reaction to commands as acknowledgement
+- changed the format of README.md 
+- renamed 'source' command output filename 'from stan.zip' to 'discord-stan.zip'
+- deletes pre-existing 'discord-stan.zip'
+- rearranged some commands
+- added new global function async acknowledge(ctx, emote, emote2) - used for adding reactions to commands
