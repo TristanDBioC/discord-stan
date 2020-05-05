@@ -10,7 +10,6 @@ client = commands.Bot(command_prefix=".")
 client.remove_command('help')
 client.version = "1.1.5"
 client.inv = "https://discord.gg/gcaHu8G"
-client.welcome_msg: discord.Message
 
 
 ''' ~~~~~~~~~~~~ FUNCTIONS ~~~~~~~~~~~~ '''
@@ -192,8 +191,8 @@ async def status(ctx, *, arg='reset'):
 @client.command()
 @commands.check(is_owner)
 async def greet(ctx):
-    client.welcome_msg = await ctx.send(welcome(ctx))
-    await client.welcome_msg.add_reaction(discord.utils.get(ctx.guild.emojis, name='empire'))
+    msg = await ctx.send(welcome(ctx))
+    await msg.add_reaction(discord.utils.get(ctx.guild.emojis, name='empire'))
     await ctx.message.delete()
 
 
