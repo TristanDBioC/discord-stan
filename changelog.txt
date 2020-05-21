@@ -1,3 +1,28 @@
+v[1.1.6] 05-21-2020
+
+General Changes
+- Restructured the entire code to be split in modules
+- Utilitiy functions are now under the 'utility' class in utils.py
+- Added new modules [devs.py, events.py, misc.py, moderation.py]
+
+
+New Commands
+- load - loads an extension containing cogs
+- unload - unloads an extension
+
+New events
+- on_command_completion - the bot adds a reaction to commands
+- on_command_error - the bots adds a reaction and reports error to error channel;
+
+
+
+v[1.1.5b] 05-06-2020
+
+Bug Fixes
+- fixed 'greet' command not working
+
+
+
 v[1.1.5] 05-05-2020
 
 General changes
