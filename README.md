@@ -1,7 +1,7 @@
 # discord-stan
 Source code for personal discord bot
 
-Version 1.1.5 | May 5, 2020
+Version 1.1.6 | May 21, 2020
 
 ## Commands
 ### Prefix = "." (default)
@@ -18,14 +18,15 @@ Version 1.1.5 | May 5, 2020
 	*needs manage_roles permission*
 - **change_roles** changes the role of a mentioned discord member
 	*needs manage_roles permission*
+- **nickname** changes the user's nickname
 
 ### Owner commands
 - **status** sets bot's status display
 - **greet** sends the welcome message
 - **source** sends the source code of the bot
+- **kill** shuts the bot down
 - **load** loads an extension
 - **unload** unloads an extension
-- **kill** shuts the bot down
 
 
 ## Events
@@ -34,6 +35,7 @@ Version 1.1.5 | May 5, 2020
 - on_member_join = restricts member visibilty and actions; adds roles
 - on_member_remove = sends a message to a certain channel when someone leaves the server
 - on_message = checks if bots are messaging in the right channel
+- on_command = the bot reacts to valid commands
 
 
 ## Files
