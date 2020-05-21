@@ -5,28 +5,28 @@ Version 1.1.6 | May 21, 2020
 
 ## Commands
 ### Prefix = "." (default)
-- **invite** shows invite link
-- **ping** sends out a simple ping
-- **clear** clears the text_channel of a number of messages
-- **kick** kicks the mentioned member
+- **invite** - shows invite link
+- **ping** - sends out a simple ping
+- **clear** - clears the text_channel of a number of messages
+- **kick** - kicks the mentioned member
 	*needs kick_member permission*
-- **ban** bans the mentioned member
+- **ban** - bans the mentioned member
 	*needs kick_member permission*
-- **addrole** adds a role to a mentioned discord member
+- **addrole** - adds a role to a mentioned discord member
 	*needs manage_roles permission*
-- **rmrole** removes a role from a mentioned discord member
+- **rmrole** - removes a role from a mentioned discord member
 	*needs manage_roles permission*
-- **change_roles** changes the role of a mentioned discord member
+- **change_roles** - changes the role of a mentioned discord member
 	*needs manage_roles permission*
-- **nickname** changes the user's nickname
+- **nickname** - changes the user's nickname
 
 ### Owner commands
-- **status** sets bot's status display
-- **greet** sends the welcome message
-- **source** sends the source code of the bot
-- **kill** shuts the bot down
-- **load** loads an extension
-- **unload** unloads an extension
+- **status** - sets bot's status display
+- **greet** - sends the welcome message
+- **source** - sends the source code of the bot
+- **kill** - shuts the bot down
+- **load** - loads an extension
+- **unload** - unloads an extension
 
 
 ## Events
@@ -39,10 +39,11 @@ Version 1.1.6 | May 21, 2020
 
 
 ## Files
-- requirements.txt = list of dependencies
-- embed.py = a function library
-- server_id.json = contains discord IDs for roles, users, channels, etc. that is used by the bot
-
-
-## Misc. Features
---
+- **requirements.txt** - list of dependencies
+- **main.py** - core script
+- **server_id.json** - contains discord IDs for roles, users, channels, etc. that is used by the bot
+- **utils.py** - contains a library of utility functions
+- **devs.py** - extension containing dev-only commands
+- **events.py** - extension with all event listeners
+- **moderation.py** - extension of server management commands
+- **misc.py** - miscellaneous commands
