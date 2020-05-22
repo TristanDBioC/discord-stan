@@ -71,8 +71,7 @@ class EventHandler(commands.Cog):
         user = ctx.author
         content = ctx.message.content
         await channel.send('In {} by {}\n"{}"\n{}'.format(ctx.channel.mention, user, content[1:], error))
-        emoji = discord.utils.get(ctx.guild.emojis, name='stan_sad')
-        await ctx.message.add_reaction(emoji)
+        raise error
 
 
 def setup(client):

@@ -23,6 +23,7 @@ class Devs(commands.Cog):
                 f.write('modules/events.py')
                 f.write('modules/moderation.py')
                 f.write('modules/misc.py')
+                f.write('modules/weather.py')
         except FileExistsError:
             pass
         finally:
@@ -37,7 +38,7 @@ class Devs(commands.Cog):
             version = discord.Game("Version {}".format(client.version))
         else:
             version = discord.Game(arg)
-        await client.change_presence(activity=version)
+        await self.client.change_presence(activity=version)
 
     @commands.command(aliases=["welcome"])
     @commands.check(utility.is_owner)
@@ -49,7 +50,7 @@ class Devs(commands.Cog):
     @commands.command()
     @commands.check(utility.is_owner)
     async def prefix(self, ctx, arg: str):
-        client.command_prefix = arg
+        self.client.command_prefix = arg
         await ctx.send("Command prefix changed to {}".format(arg))
 
 
