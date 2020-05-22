@@ -14,7 +14,7 @@ class utility:
         return data[key1][key2]
 
     def unix_to_utc(unix: int, timezone: int):
-        time = datetime.utcfromtimestamp(unix - timezone)
+        time = datetime.utcfromtimestamp(unix + timezone)
         return time
 
     def welcome(ctx):
