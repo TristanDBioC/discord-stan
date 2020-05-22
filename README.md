@@ -1,7 +1,7 @@
 # discord-stan
 Source code for personal discord bot
 
-Version 1.1.6 | May 21, 2020
+Version 1.2.1 | May 22, 2020
 
 ## Commands
 ### Prefix = "." (default)
@@ -19,6 +19,7 @@ Version 1.1.6 | May 21, 2020
 - **change_roles** - changes the role of a mentioned discord member
 	*needs manage_roles permission*
 - **nickname** - changes the user's nickname
+- **weather** - gets the current realtime weather of the specified city
 
 ### Owner commands
 - **status** - sets bot's status display
@@ -47,3 +48,9 @@ Version 1.1.6 | May 21, 2020
 - **events.py** - extension with all event listeners
 - **moderation.py** - extension of server management commands
 - **misc.py** - miscellaneous commands
+
+## Features
+### Gets current weather
+- utilizes openweathermap.org api to get the current weather of a city
+- shows temperature, precipiation, wind, pressure, and local time
+- uses google static map api to display the specified city

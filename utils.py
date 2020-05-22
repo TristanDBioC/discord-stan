@@ -1,5 +1,6 @@
 import json
 import discord
+from datetime import datetime
 
 class utility:
 
@@ -11,6 +12,10 @@ class utility:
         with open('server_id.json', 'r') as f:
             data = json.load(f)
         return data[key1][key2]
+
+    def unix_to_utc(unix: int, timezone: int):
+        time = datetime.utcfromtimestamp(unix - timezone)
+        return time
 
     def welcome(ctx):
         message = '''

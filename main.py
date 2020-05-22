@@ -4,9 +4,13 @@ from discord.ext import commands
 from utils import *
 
 client = commands.Bot(command_prefix="`")
-client.version = "1.1.6"
+client.version = "1.2.1"
 client.inv = "https://discord.gg/gcaHu8G"
 client.remove_command('help')
+
+client.discord_token = "NjkwMDc2NTYyMTEyMjQ5ODU3.Xqm08w.MxcI1TRCZYoVVD8spfsAyruGEnI"
+client.google_mapstatic_key = "AIzaSyBm3HY-1hMy1lZhBdMCHij6MILbXpKFwL8"
+client.openweather_key = "92c0a98ba49b179b7de1e9b4c08b0c2f"
 
 
 @client.command()
@@ -41,6 +45,7 @@ client.load_extension('modules.devs')
 client.load_extension('modules.moderation')
 client.load_extension('modules.events')
 client.load_extension('modules.misc')
+client.load_extension('modules.weather')
 
 
-client.run("NjkwMDc2NTYyMTEyMjQ5ODU3.Xqm08w.MxcI1TRCZYoVVD8spfsAyruGEnI")
+client.run(client.discord_token)
