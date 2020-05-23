@@ -1,7 +1,7 @@
 # discord-stan
 Source code for personal discord bot
 
-Version 1.2.1 | May 22, 2020
+Version 1.2.2 | May 23, 2020
 
 ## Commands
 ### Prefix = "." (default)
@@ -47,6 +47,7 @@ Version 1.2.1 | May 22, 2020
 - **devs.py** - extension containing dev-only commands
 - **events.py** - extension with all event listeners
 - **moderation.py** - extension of server management commands
+- **weather.py** - extension for the openweathermap integration
 - **misc.py** - miscellaneous commands
 
 ## Features

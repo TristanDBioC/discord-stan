@@ -1,4 +1,17 @@
+v[1.2.2] 05-23-2020
+
+General Changes
+- changed discord repository to public
+- changed api keys from global variables to json
+- changed regenerated api keys
+
+Fixes
+- status reset now works
+
+
+
 v[1.2.1] 05-22-2020
+
 General Changes
 - added global variables api keys
 - added google static map api key
@@ -11,6 +24,7 @@ New Commands
 
 Fixes
 - changed client to self.client in cogs
+
 
 
 v[1.1.6] 05-21-2020

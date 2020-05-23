@@ -16,6 +16,7 @@ class Devs(commands.Cog):
                 f.write('README.md')
                 f.write('main.py')
                 f.write('utils.py')
+                f.write('api_keys.json')
                 f.write('server_id.json')
                 f.write('requirements.txt')
                 f.write('changelog.txt')

@@ -1,4 +1,3 @@
-import json
 import requests
 import discord
 
@@ -11,18 +10,20 @@ class Weather(commands.Cog):
         self.client = client
 
     def api_call(self, city="Dumaguete"):
-        api_key = self.client.openweather_key
+        api_key = utility.get_api_key("openweathermap")
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
         unit = "metric"
         search_url = base_url + "q=" + city + "&units" + unit + "&appid=" + api_key
         response = requests.get(search_url)
         x = response.json()
         if x["cod"] == "404":
-            return None
+            return 404
+        if x["cod"] == 401:
+            return 401
         return x
 
     def google_maps(self, lon, lat):
-        api_key = self.client.google_mapstatic_key
+        api_key = utility.get_api_key("google_staticmap")
         base_url = "https://maps.googleapis.com/maps/api/staticmap?"
         center = "{},{}".format(lon, lat)
         size = "400x300"
@@ -80,8 +81,11 @@ class Weather(commands.Cog):
 
     @commands.command()
     async def weather(self, ctx, *, city):
-        if self.api_call(city) is None:
+        if self.api_call(city) == 404:
             await ctx.send("City not found")
+            return
+        if self.api_call(city) == 401:
+            await ctx.send("API Key not Working")
             return
         await ctx.send(embed=self.WeatherMap(ctx, city))
 
