@@ -35,7 +35,7 @@ class Devs(commands.Cog):
     @commands.check(utility.is_owner)
     async def status(self, ctx, *, arg='reset'):
         if arg == 'reset':
-            version = discord.Game("Version {}".format(client.version))
+            version = discord.Game("Version {}".format(self.client.version))
         else:
             version = discord.Game(arg)
         await self.client.change_presence(activity=version)
