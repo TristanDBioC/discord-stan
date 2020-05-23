@@ -1,5 +1,6 @@
 # discord-stan
 Source code for personal discord bot
+Warning: api_keys.json is missing from this repository.
 
 Version 1.2.2 | May 23, 2020
 
