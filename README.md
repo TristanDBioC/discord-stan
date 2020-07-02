@@ -36,7 +36,6 @@ Version 1.2.3 | July 2, 2020
 - on_raw_reaction_add = allows complete entry to server after reacting to the welcome message
 - on_member_join = restricts member visibilty and actions; adds roles
 - on_member_remove = sends a message to a certain channel when someone leaves the server
-- on_message = checks if bots are messaging in the right channel
 - on_command = the bot reacts to valid commands
 
 
