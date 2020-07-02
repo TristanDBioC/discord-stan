@@ -36,17 +36,10 @@ class Devs(commands.Cog):
     @commands.check(utility.is_owner)
     async def status(self, ctx, *, arg='reset'):
         if arg == 'reset':
-            version = discord.Game("Version {}".format(self.client.version))
+            version = discord.Game("Version {}".format(constants.version))
         else:
             version = discord.Game(arg)
         await self.client.change_presence(activity=version)
-
-    @commands.command(aliases=["welcome"])
-    @commands.check(utility.is_owner)
-    async def greet(self, ctx):
-        msg = await ctx.send(utility.welcome(ctx))
-        await msg.add_reaction(discord.utils.get(ctx.guild.emojis, name='empire'))
-        await ctx.message.delete()
 
     @commands.command()
     @commands.check(utility.is_owner)

@@ -4,8 +4,6 @@ from discord.ext import commands
 from utils import *
 
 client = commands.Bot(command_prefix="`")
-client.version = "1.2.2"
-client.inv = "https://discord.gg/gcaHu8G"  # invite link
 client.remove_command('help')
 
 

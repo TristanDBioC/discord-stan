@@ -11,7 +11,7 @@ class EventHandler(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        version = discord.Game("Version {}".format(self.client.version))
+        version = discord.Game("Version {}".format(constants.version))
         await self.client.change_presence(activity=version)
         try:
             os.remove('discord-stan.zip')
@@ -49,16 +49,7 @@ class EventHandler(commands.Cog):
     @commands.Cog.listener()
     async def on_member_remove(self, member):
         channel = self.client.get_channel(utility.get_id("channels", "system"))
-        await channel.send("{} left the empire. Farewell!{}".format(member, discord.utils.get(member.guild.emojis, name='stan_neutral')))
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        if message.author.bot is True and message.author != self.client.user:
-            if message.channel.id not in utility.get_id("channels", "botspam"):
-                channel = self.client.get_channel(697868801697382401)
-                await message.delete()
-                await message.channel.send("Bots can only send messages in {}".
-                                           format(channel.mention))
+        await channel.send("{} left the empire. Farewell!{}".format(member, discord.utils.get(member.guild.emojis, name='stan_sad')))
 
     @commands.Cog.listener()
     async def on_command_completion(self, ctx):

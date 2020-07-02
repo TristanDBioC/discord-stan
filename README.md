@@ -1,7 +1,7 @@
 # discord-stan
 Source code for personal discord bot
 
-Version 1.2.2 | May 23, 2020
+Version 1.2.3 | July 2, 2020
 
 ## Commands
 ### Prefix = "." (default)
@@ -20,10 +20,10 @@ Version 1.2.2 | May 23, 2020
 	*needs manage_roles permission*
 - **nickname** - changes the user's nickname
 - **weather** - gets the current realtime weather of the specified city
+- **stats** - displays CPU usage, memory usage, number of servers active, and current version of the bot
 
 ### Owner commands
 - **status** - sets bot's status display
-- **greet** - sends the welcome message
 - **source** - sends the source code of the bot
 - **kill** - shuts the bot down
 - **load** - loads an extension

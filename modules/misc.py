@@ -1,6 +1,8 @@
 import discord
+import psutil
 
 from discord.ext import commands
+from utils import *
 
 
 class Misc(commands.Cog):
@@ -9,8 +11,13 @@ class Misc(commands.Cog):
         self.client = client
 
     @commands.command()
+    @commands.check(utility.is_owner)
+    async def test(self, ctx):
+        await ctx.send(str(discord.ClientUser.avatar_url))
+
+    @commands.command()
     async def invite(self, ctx):
-        await ctx.send(self.client.inv)
+        await ctx.send(constants.inv)
 
     @commands.command()
     async def ping(self, ctx):
@@ -20,6 +27,24 @@ class Misc(commands.Cog):
     @commands.command(aliases=["nick", "name"])
     async def nickname(self, ctx, *, arg):
         await ctx.author.edit(nick=arg)
+
+    @commands.command(aliases=['info'])
+    async def stats(self, ctx):
+        cpu_usage = psutil.cpu_percent()
+        memory_usage = psutil.virtual_memory().percent
+        guild_count = len(self.client.guilds)
+        stat_embed = discord.Embed(title='Bot Information')
+        stat_embed.set_author(name='Stan', url=constants.bot_url, icon_url=str(self.client.user.avatar_url))
+        stat_embed.add_field(name='CPU-Usage',
+                             value='%s %%' % cpu_usage, inline=True)
+        stat_embed.add_field(name='Memory Usage',
+                             value='%s %%' % memory_usage, inline=True)
+        stat_embed.add_field(name='Servers',
+                             value=guild_count, inline=True)
+        stat_embed.add_field(name='Version',
+                             value=constants.version)
+        await ctx.send(embed=stat_embed)
+
 
 
 def setup(client):
