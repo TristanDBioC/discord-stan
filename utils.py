@@ -24,5 +24,5 @@ class utility:
 class constants:
 
     bot_url = 'https://github.com/TristanDBioC/discord-stan'
-    version = "1.2.3"
+    version = "1.2.4"
     inv = "https://discord.gg/gcaHu8G"  # invite link

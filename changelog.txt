@@ -1,3 +1,14 @@
+v[1.2.4] 07-08-2020
+General Changes
+- added Math module
+- role management command no long needs the role to be mentioned
+
+New Commands
+- sprob - calculates a probability occuring in a series of events
+- slovin - calculates a sample size given a population size and error tolerance level
+- calc - evaluates a mathematical expression
+
+
 v[1.2.3] 06-29-2020
 
 General Changes

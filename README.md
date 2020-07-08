@@ -2,7 +2,7 @@
 Source code for personal discord bot
 Warning: api_keys.json is missing from this repository.
 
-Version 1.2.3 | July 2, 2020
+Version 1.2.4 | July 8, 2020
 
 ## Commands
 ### Prefix = "." (default)
@@ -22,6 +22,7 @@ Version 1.2.3 | July 2, 2020
 - **nickname** - changes the user's nickname
 - **weather** - gets the current realtime weather of the specified city
 - **stats** - displays CPU usage, memory usage, number of servers active, and current version of the bot
+- **sprob** - calculates a probability occuring in a series of events
 
 ### Owner commands
 - **status** - sets bot's status display

@@ -25,6 +25,7 @@ class Devs(commands.Cog):
                 f.write('modules/moderation.py')
                 f.write('modules/misc.py')
                 f.write('modules/weather.py')
+                f.write('modules/math.py')
         except FileExistsError:
             pass
         finally:
