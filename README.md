@@ -2,7 +2,7 @@
 Source code for personal discord bot
 Warning: api_keys.json is missing from this repository.
 
-Version 1.2.2 | May 23, 2020
+Version 1.2.4 | July 8, 2020
 
 ## Commands
 ### Prefix = "." (default)
@@ -21,10 +21,11 @@ Version 1.2.2 | May 23, 2020
 	*needs manage_roles permission*
 - **nickname** - changes the user's nickname
 - **weather** - gets the current realtime weather of the specified city
+- **stats** - displays CPU usage, memory usage, number of servers active, and current version of the bot
+- **sprob** - calculates a probability occuring in a series of events
 
 ### Owner commands
 - **status** - sets bot's status display
-- **greet** - sends the welcome message
 - **source** - sends the source code of the bot
 - **kill** - shuts the bot down
 - **load** - loads an extension
@@ -36,7 +37,6 @@ Version 1.2.2 | May 23, 2020
 - on_raw_reaction_add = allows complete entry to server after reacting to the welcome message
 - on_member_join = restricts member visibilty and actions; adds roles
 - on_member_remove = sends a message to a certain channel when someone leaves the server
-- on_message = checks if bots are messaging in the right channel
 - on_command = the bot reacts to valid commands
 
 

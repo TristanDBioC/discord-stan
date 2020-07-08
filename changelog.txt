@@ -1,3 +1,29 @@
+v[1.2.4] 07-08-2020
+General Changes
+- added Math module
+- role management command no long needs the role to be mentioned
+
+New Commands
+- sprob - calculates a probability occuring in a series of events
+- slovin - calculates a sample size given a population size and error tolerance level
+- calc - evaluates a mathematical expression
+
+
+v[1.2.3] 06-29-2020
+
+General Changes
+- added emoji: stan_sad
+- on_member_remove event: changed emoji from 'stan_neutral' to 'stan_sad'
+- changed global attributes 'client.inv' and 'client.version' into a class 'constants'
+
+New Commands
+- stats - shows CPU usage, memory usage, number of servers active, and current version of the bot
+
+Removed
+- 'greet' commands and dependencies
+- restrictions of bot messages to certain channels
+
+
 v[1.2.2] 05-23-2020
 
 General Changes

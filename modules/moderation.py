@@ -25,17 +25,20 @@ class Moderation(commands.Cog):
 
     @commands.command()
     @commands.has_permissions(manage_roles=True)
-    async def addrole(self, ctx, member: discord.Member, role: discord.Role):
+    async def addrole(self, ctx, member: discord.Member, r):
+        role = discord.utils.get(ctx.guild.roles, name=r)
         await member.add_roles(role)
 
     @commands.command()
     @commands.has_permissions(manage_roles=True)
-    async def rmrole(self, ctx, member: discord.Member, role: discord.Role):
+    async def rmrole(self, ctx, member: discord.Member, r):
+        role = discord.utils.get(ctx.guild.roles, name=r)
         await member.remove_roles(role)
 
     @commands.command(aliases=['demote', 'promote'])
     @commands.has_permissions(manage_roles=True)
-    async def change_roles(self, ctx, member: discord.Member, role: discord.Role):
+    async def change_roles(self, ctx, member: discord.Member, r):
+        role = discord.utils.get(ctx.guild.roles, name=r)
         if ctx.author.top_role.position < member.top_role.position:
             await ctx.send("You cannot dictate someone higher than you")
             return
