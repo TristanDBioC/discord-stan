@@ -1,3 +1,13 @@
+v[1.2.5] 07-25-2020
+General Changes
+- added Forex module
+- added a directory for library files
+- hourly checks to fixer.io for Forex updates
+
+New Command
+- forex - converts one form of currency to another
+
+
 v[1.2.4] 07-08-2020
 General Changes
 - added Math module

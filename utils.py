@@ -4,7 +4,7 @@ from datetime import datetime
 class utility:
 
     def get_api_key(arg1: str):
-        with open('api_keys.json', 'r') as f:
+        with open('libraries/api_keys.json', 'r') as f:
             data = json.load(f)
         return data[arg1]
 
@@ -13,11 +13,11 @@ class utility:
             return True
 
     def get_id(key1: str, key2: str):
-        with open('server_id.json', 'r') as f:
+        with open('libraries/server_id.json', 'r') as f:
             data = json.load(f)
         return data[key1][key2]
 
-    def unix_to_utc(unix: int, timezone: int):
+    def unix_to_utc(unix: int, timezone: int = 0):
         time = datetime.utcfromtimestamp(unix + timezone)
         return time
 

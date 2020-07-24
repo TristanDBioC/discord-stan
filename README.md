@@ -23,6 +23,7 @@ Version 1.2.4 | July 8, 2020
 - **weather** - gets the current realtime weather of the specified city
 - **stats** - displays CPU usage, memory usage, number of servers active, and current version of the bot
 - **sprob** - calculates a probability occuring in a series of events
+- **forex** - converts currency
 
 ### Owner commands
 - **status** - sets bot's status display
@@ -51,8 +52,12 @@ Version 1.2.4 | July 8, 2020
 - **weather.py** - extension for the openweathermap integration
 - **misc.py** - miscellaneous commands
 
-## Features
+## Special Features
 ### Gets current weather
 - utilizes openweathermap.org api to get the current weather of a city
 - shows temperature, precipiation, wind, pressure, and local time
 - uses google static map api to display the specified city
+
+### Converts Currency
+- utilizes fixer.io services to get exchange information from 170 currencies
+- Updates hourly
